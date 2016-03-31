@@ -1,0 +1,66 @@
+---
+- name: Install tools for adding PPA repositories
+  sudo: yes
+  apt: name={{ item }} state=latest
+  with_items:
+    - python-software-properties
+    - software-properties-common
+
+- name: Install Python dependencies
+  sudo: true
+  apt: name={{ item }} state=latest
+  with_items:
+    - libffi-dev
+    - gcc
+
+- include: deadsnakes.yml
+- include: pypy.yml
+- name: Install python
+  apt: name=python{{ item.version }} state=latest
+  sudo: true
+  with_items: python_dev_versions
+- name: Install python-dev
+  apt: name=python{{ item.version }}-dev state=latest
+  sudo: true
+  with_items: python_dev_versions
+- name: Install extra python support libs
+  sudo: true
+  apt: name=python-gdbm state=latest
+
+- include: pip.yml
+- name: Install easy_install from source
+  sudo: yes
+  command: "python{{item.version}} /tmp/ez_setup.py"
+  args:
+    creates: "/usr/local/bin/easy_install-{{item.version}}"
+  with_items: python_dev_versions
+- name: Install pip from source
+  sudo: yes
+  command: "python{{item.version}} /tmp/get-pip.py"
+  args:
+    creates: "/usr/local/bin/pip{{item.version}}"
+  with_items: python_dev_versions
+
+- name: Create ~/.pip/wheelhouse
+  file: path={{python_dev_wheelhouse}}
+        state=directory
+- name: ~/.pip.conf
+  template: src=pip.conf
+            dest={{ansible_env.HOME}}/.pip/pip.conf
+
+- name: Install pip tools
+  pip: name={{ item[1] }} executable=pip{{item[0].version}}
+  sudo: true
+  with_nested:
+    - python_dev_versions
+    - [ 'wheel', 'certifi', 'pyopenssl', 'pyasn1', 'ndg-httpsclient' ]
+
+- name: Install Python tools
+  pip: name={{ item }} state=latest
+  sudo: true
+  with_items:
+    - pbr
+    - tox
+    - virtualenv
+    - virtualenvwrapper
+    - wheel
