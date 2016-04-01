@@ -29,3 +29,9 @@
   shell: locale-gen {{server.locale}}
   sudo: yes
 
+- name: Install Zf tool binaries (zend-framework-bin)
+  apt: pkg={{ item }} state=latest
+  sudo: yes
+  with_items:
+    - zend-framework-bin
+

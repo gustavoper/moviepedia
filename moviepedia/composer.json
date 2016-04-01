@@ -1,0 +1,12 @@
+{
+    "name": "gustavopereira/moviepedia",
+    "require": {
+        "zendframework/zendframework1": "1.*"
+    },
+    "authors": [
+        {
+            "name": "Gustavo Pereira",
+            "email": "gustavoper@gmail.com"
+        }
+    ]
+}
