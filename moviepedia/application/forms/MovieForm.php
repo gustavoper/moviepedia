@@ -5,12 +5,11 @@ class Application_Form_MovieForm extends Zend_Form
 
     public function init()
     {
-        /* Form Elements & Other Definitions Here ... */
 
-        $this->setName('newMovie');
+        $this->setName('saveMovie');
         $this->setMethod('post');
 
-        $name =  $this->createElement('text', 'nome',array('label' => 'Nome'  ));
+        $name =  $this->createElement('text', 'name',array('label' => 'Nome'  ));
         $name->addFilters(array('StringTrim'))
             ->addValidator('StringLength', false,array(5,50))
             ->setValue('')
@@ -26,6 +25,17 @@ class Application_Form_MovieForm extends Zend_Form
             ->addValidator('StringLength', false,array(5,50))
             ->setValue('');
 
+        $plot =  $this->createElement('text','plot',array('label' => 'Enredo'  ));
+        $plot ->setRequired(true)
+            ->addValidator('StringLength', false,array(5,50))
+            ->setValue('');
+
+
+        $publisher =  $this->createElement('text','publisher',array('label' => 'Produtora'  ));
+        $publisher->setRequired(true)
+            ->addValidator('StringLength', false,array(5,50))
+            ->setValue('');
+
 
 
         $submit =  $this->createElement('submit','save',array('label' => 'Cadastrar'));
@@ -36,6 +46,8 @@ class Application_Form_MovieForm extends Zend_Form
             $name,
             $genre,
             $launchYear,
+            $plot,
+            $publisher,
             $submit,
         ));
 

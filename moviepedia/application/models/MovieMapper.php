@@ -3,7 +3,7 @@
 class Application_Model_MovieMapper
 {
 
-    protected $_dbTable;
+    protected $dbTable;
 
     public function setDbTable($dbTable)
     {
@@ -13,16 +13,16 @@ class Application_Model_MovieMapper
         if (!$dbTable instanceof Zend_Db_Table_Abstract) {
             throw new Exception('Invalid table data gateway provided');
         }
-        $this->_dbTable = $dbTable;
+        $this->dbTable = $dbTable;
         return $this;
     }
 
     public function getDbTable()
     {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('Application_Model_DbTable_Movie');
+        if (null === $this->dbTable) {
+            $this->setDbTable('Application_Model_dbTable_Movie');
         }
-        return $this->_dbTable;
+        return $this->dbTable;
     }
 
 
@@ -34,7 +34,9 @@ class Application_Model_MovieMapper
 
     }
 
-
+    /**
+     * @return array
+     */
     public function fetchAll() {
         $resultSet = $this->getDbTable()->fetchAll();
 
@@ -50,9 +52,22 @@ class Application_Model_MovieMapper
         }
         return $entries;
 
-
     }
 
+    /**
+     * @param Application_Model_Movie $movie
+     */
+    public function insert(Application_Model_Movie $movie) {
+        $tbl = $this->getDbTable();
+
+        $data["genre"] = $movie->getGenre();
+        $data["launchyear"] = $movie->getLaunchYear();
+        $data["name"] = $movie->getName();
+        $data["plot"] = $movie->getPlot();
+        $data["publisher"] = $movie->getPublisher();
+        $tbl->insert($data);
+        //return $tbl->lastInsertId();
+    }
 
 }
 

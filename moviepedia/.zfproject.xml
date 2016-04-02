@@ -22,6 +22,12 @@
         <controllerFile controllerName="Publisher">
           <actionMethod actionName="index"/>
         </controllerFile>
+        <controllerFile controllerName="Access">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="RemoteAccess">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false">
         <formFile formName="DojoForm"/>
@@ -38,8 +44,12 @@
       <modelsDirectory>
         <dbTableDirectory>
           <dbTableFile dbTableName="Movie"/>
+          <dbTableFile dbTableName="Genre"/>
+          <dbTableFile dbTableName="Publisher"/>
+          <dbTableFile dbTableName="Access"/>
         </dbTableDirectory>
         <modelFile modelName="MovieMapper"/>
+        <modelFile modelName="Genre"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <viewsDirectory>
@@ -60,6 +70,12 @@
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Publisher">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Access">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="RemoteAccess">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
