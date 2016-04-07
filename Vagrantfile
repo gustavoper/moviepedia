@@ -25,10 +25,10 @@ end
 Vagrant.configure("2") do |config|
 
     config.vm.provider :virtualbox do |v|
-        v.name = "devenvironment"
+        v.name = "devenvironment2"
         v.customize [
             "modifyvm", :id,
-            "--name", "devenvironment",
+            "--name", "devenvironment2",
             "--memory", 1024,
             "--natdnshostresolver1", "on",
             "--cpus", 1,
@@ -37,7 +37,7 @@ Vagrant.configure("2") do |config|
 
     config.vm.box = "ubuntu/trusty64"
     
-    config.vm.network :private_network, ip: "10.10.10.2"
+    config.vm.network :private_network, ip: "10.11.10.2"
     config.ssh.forward_agent = true
 
     # If ansible is in your path it will provision from your HOST machine
@@ -52,5 +52,5 @@ Vagrant.configure("2") do |config|
         config.vm.provision :shell, path: "ansible/windows.sh", args: ["devenvironment"]
     end
 
-    config.vm.synced_folder "./", "/vagrant"
+    config.vm.synced_folder "./public", "/vagrant"
 end
