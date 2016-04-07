@@ -13,7 +13,7 @@ Este projeto contem alem do codigo-fonte, um ambiente de desenvolvimento pre-con
 * Nginx
 * zf-tool
 
-Parte do script foi criado atraves do [phansible](http://phansible.com/). O role do pythob foi parcialmente baseado [neste post](https://doughellmann.com/blog/2015/03/07/ansible-roles-for-python-developers/).
+Parte do script foi criado atraves do [phansible](http://phansible.com/). O role do python foi parcialmente baseado [neste post](https://doughellmann.com/blog/2015/03/07/ansible-roles-for-python-developers/).
 
 
 #### instruções
