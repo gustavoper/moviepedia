@@ -23,32 +23,8 @@ Para rodar a VM, basta iniciar o vagrant (``vagrant up``). A aplicação estará
 O diretorio ``public`` deve contar os arquivos-fonte da aplicação.
 
 
-#### Extras
+#### Update
 
-* Comandos para o zf-tool * 
+Existem alguns bugs conhecidos. O MongoDB não está registrando as collections e o rewrite do nginx está com problemas.
 
-zf configure db-adapter "adapter=PDO_MYSQL&dbname=[movies]&host=[127.0.0.1:9000]&username=[movieuser]&password=[movie123]" -s development
-
-
-zf configure db-adapter "adapter=Pdo_Mysql&host=10.11.10.2&username=root&password=&dbname=moviepedia&charset=utf8"
-
-zf enable layout
-
-zf create controller movie
-zf create action add movie
-
-zf create controller publisher &&
-zf create action add publisher &&
-zf create action edit publisher &&
-zf create action delete publisher &&
-zf create db-table Publisher publisher &&
-zf create form Publisher
-
-zf create controller genre &&
-zf create action add genre &&
-zf create action edit genre &&
-zf create action delete genre &&
-zf create db-table Genre genre &&
-zf create form Genre
-
-
+Mas o log está sendo feito na tabela ``access`` e a aplicação funciona bem no *built-in server*.
