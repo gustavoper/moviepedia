@@ -1,0 +1,8 @@
+<p>Tem certeza de que deseja excluir o Genero "<?php echo $this->publisher["name"];?>" ? </p>
+
+<form action="" method="POST">
+	<input type="hidden" name="id" value="<?php echo $this->publisher['id'];?>">
+
+	<input type="submit" name="del" value='Sim' />
+	<input type="submit" name="del" value='Não' />
+</form>

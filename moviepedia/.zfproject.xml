@@ -10,31 +10,34 @@
       <controllersDirectory>
         <controllerFile controllerName="Index">
           <actionMethod actionName="index"/>
-          <actionMethod actionName="login"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
         <controllerFile controllerName="Movie">
           <actionMethod actionName="index"/>
-        </controllerFile>
-        <controllerFile controllerName="Genre">
-          <actionMethod actionName="index"/>
+          <actionMethod actionName="add"/>
+          <actionMethod actionName="edit"/>
+          <actionMethod actionName="delete"/>
         </controllerFile>
         <controllerFile controllerName="Publisher">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="add"/>
+          <actionMethod actionName="edit"/>
+          <actionMethod actionName="delete"/>
+        </controllerFile>
+        <controllerFile controllerName="Genre">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="add"/>
+          <actionMethod actionName="edit"/>
+          <actionMethod actionName="delete"/>
         </controllerFile>
         <controllerFile controllerName="Access">
           <actionMethod actionName="index"/>
         </controllerFile>
-        <controllerFile controllerName="RemoteAccess">
-          <actionMethod actionName="index"/>
-        </controllerFile>
       </controllersDirectory>
-      <formsDirectory enabled="false">
-        <formFile formName="DojoForm"/>
-        <formFile formName="LoginForm"/>
-        <formFile formName="PublisherForm"/>
-        <formFile formName="GenreForm"/>
-        <formFile formName="MovieForm"/>
+      <formsDirectory>
+        <formFile formName="Movie"/>
+        <formFile formName="Publisher"/>
+        <formFile formName="Genre"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -44,12 +47,10 @@
       <modelsDirectory>
         <dbTableDirectory>
           <dbTableFile dbTableName="Movie"/>
-          <dbTableFile dbTableName="Genre"/>
           <dbTableFile dbTableName="Publisher"/>
+          <dbTableFile dbTableName="Genre"/>
           <dbTableFile dbTableName="Access"/>
         </dbTableDirectory>
-        <modelFile modelName="MovieMapper"/>
-        <modelFile modelName="Genre"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <viewsDirectory>
@@ -60,22 +61,43 @@
           <viewControllerScriptsDirectory forControllerName="Error">
             <viewScriptFile forActionName="error"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Index">
-            <viewScriptFile forActionName="login"/>
-          </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Movie">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Genre">
-            <viewScriptFile forActionName="index"/>
+          <viewControllerScriptsDirectory forControllerName="Movie">
+            <viewScriptFile forActionName="add"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Movie">
+            <viewScriptFile forActionName="edit"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Movie">
+            <viewScriptFile forActionName="delete"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Publisher">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Access">
+          <viewControllerScriptsDirectory forControllerName="Publisher">
+            <viewScriptFile forActionName="add"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Publisher">
+            <viewScriptFile forActionName="edit"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Publisher">
+            <viewScriptFile forActionName="delete"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Genre">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="RemoteAccess">
+          <viewControllerScriptsDirectory forControllerName="Genre">
+            <viewScriptFile forActionName="add"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Genre">
+            <viewScriptFile forActionName="edit"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Genre">
+            <viewScriptFile forActionName="delete"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Access">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>

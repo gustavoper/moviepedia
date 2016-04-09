@@ -1,3 +1,4 @@
+
 <html>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <title>MoviePedia - A sua Wikipedia de filmes</title>
@@ -7,10 +8,21 @@
         font-size:14px;
     }
 
+    table {
+    	border:1px solid #000000;
+    	background-color: #eeeeee;
+
+    }
+    thead {
+    	background-color: #cccccc;
+
+    }
+
 </style>
 <body>
 <div id="header"><h1>MoviePedia</h1></div>
-<div id="menu"><a href="/movie">Filmes</a> | <a href="/genre">Generos</a> | <a href="/publisher">Produtores</a> | <a href="/access">Acesso</a> | <a href="/remote-access">SSH</a>  </div>
+<div id="menu"><a href="/public/movie">Filmes</a> | <a href="/public/genre">Generos</a> | <a href="/public/publisher">Produtores</a> | <a href="/public/access">Acesso</a> | <a href="/remote-access">SSH</a>  </div>
+<p>&nbsp;</p>
 <div id="content">
     <?php echo $this->layout()->content; ?>
 </div>

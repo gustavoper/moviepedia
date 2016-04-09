@@ -3,48 +3,100 @@
 class MovieController extends Zend_Controller_Action
 {
 
-
     public function init()
     {
         /* Initialize action controller here */
-        $this->_db = new Application_Model_DbTable_Movie();
-
+        $this->registerAccess();
     }
 
     public function indexAction()
     {
         // action body
-        $movie = new Application_Model_MovieMapper();
-        $this->view->entries = $movie->fetchAll();
 
+        $movies = new Application_Model_DbTable_Movie();
+        $this->view->movies = $movies->getMovie();
     }
 
-    public function newAction() {
-        $newMovie = $this->getForm();
-        $this->view->form= $newMovie;
+    public function addAction()
+    {
+        // action body
+        $form = new Application_Form_Movie();
+        $form->submit->setLabel('Adicionar');
+        $this->view->form = $form;
+        $formData = $this->getRequest()->getPost();
+        if ($this->getRequest()->isPost()) {
+            if ($form->isValid($formData)) {
+                $movies = new Application_Model_DbTable_Movie();
+                $movies->addMovie($formData);
+                $this->_helper->redirector('index');
+            }
+        } else {
+            $form->populate($formData);
+        }
+    }
+
+    public function editAction()
+    {   //action body
+        $form = new Application_Form_Movie();
+        $form->submit->setLabel('Salvar');
+        $this->view->form = $form;
+        if ($this->getRequest()->isPost()) {
+            $formData = $this->getRequest()->getPost();
+            if ($form->isValid($formData)) {
+                $movies = new Application_Model_DbTable_Movie();
+                $id = intval($form->getValue('id'));
+                $movies->editMovie($id,$formData);
+                $this->_helper->redirector('index');
+            }
+            else {
+                $form->populate($formData);
+            }
+        } else {
+            $id = $this->_getParam('id',0);
+            if ($id >0) {
+                $movies = new Application_Model_DbTable_Movie();
+                $form->populate($movies->getMovie($id));
+
+            }
+        }
     }
 
 
-    public function saveAction() {
-        $newMovieMapper = new Application_Model_MovieMapper();
-        $formData = $this->getRequest();
-        $movie = new Application_Model_Movie();
-        //$form = $this->getForm();
-            $movie->setGenre($formData->getParam("genre"));
-            $movie->setLaunchYear($formData->getParam("launchyear"));
-            $movie->setName($formData->getParam("name"));
-            $movie->setPlot($formData->getParam("plot"));
-            $movie->setPublisher($formData->getParam("publisher"));
-            $newMovieMapper->insert($movie);
-        //$this->view->form = $form;
-        $this->_helper->redirector('index', 'movie');
+
+    /**
+    *
+    */
+    public function deleteAction()
+    {
+        if ($this->getRequest()->isPost()) {
+            $del = $this->getRequest()->getPost('del');
+            if ($del == 'Sim') {
+                $movies = new Application_Model_DbTable_Movie();
+                $id = intval($this->getRequest()->getPost('id'));
+                $movies->deleteMovie($id);
+            }
+                $this->_helper->redirector('index');
+        } 
+        else {
+            $id = $this->_getParam('id',0);
+            if ($id >0) {
+                $movies = new Application_Model_DbTable_Movie();
+                $this->view->movie = $movies->getMovie($id);
+            }
+        }
     }
 
-
-    public function getForm() {
-        return new Application_Form_MovieForm();
-
+    public function registerAccess() 
+    {
+        $access = new Application_Model_DbTable_Access();
+        $access->addAccess();
     }
 
 }
+
+
+
+
+
+
 

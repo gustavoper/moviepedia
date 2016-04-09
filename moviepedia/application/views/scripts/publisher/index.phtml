@@ -1,4 +1,23 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Publisher</b> and script/action name <b>index</b></p>
-</div>
+<table>
+	<thead>
+		<td>#</td>
+		<td>Nome</td>
+		<td>Descrição</td>
+		<td colspan=2>Ações</td>
+	</thead>
+	
+<?php foreach($this->publishers as $publisher){ ?>
+<tbody>
+	<td><?php echo $publisher->id; ?></td>
+	<td><?php echo $publisher->name; ?></td>
+	<td><?php echo $publisher->description; ?></td>
+	<td><a href="<?php echo $this->url(array('controller'=>'publisher','action'=>'edit','id'=>$publisher->id) ) ;?>">Editar</a></td>
+	<td><a href="<?php echo $this->url(array('controller'=>'publisher','action'=>'delete','id'=>$publisher->id) ) ;?>">Excluir</a></td>
+</tbody>
+
+<?php 
+}
+?>
+
+
+</table>

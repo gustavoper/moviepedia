@@ -1,4 +1,23 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Genre</b> and script/action name <b>index</b></p>
-</div>
+<table>
+	<thead>
+		<td>#</td>
+		<td>Nome</td>
+		<td>Descrição</td>
+		<td colspan=2>Ações</td>
+	</thead>
+	
+<?php foreach($this->genres as $genre){ ?>
+<tbody>
+	<td><?php echo $genre->id; ?></td>
+	<td><?php echo $genre->name; ?></td>
+	<td><?php echo $genre->description; ?></td>
+	<td><a href="<?php echo $this->url(array('controller'=>'genre','action'=>'edit','id'=>$genre->id) ) ;?>">Editar</a></td>
+	<td><a href="<?php echo $this->url(array('controller'=>'genre','action'=>'delete','id'=>$genre->id) ) ;?>">Excluir</a></td>
+</tbody>
+
+<?php 
+}
+?>
+
+
+</table>

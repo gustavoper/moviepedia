@@ -1,4 +1,33 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Access</b> and script/action name <b>index</b></p>
-</div>
+
+<table>
+	<thead>
+		<td>#</td>
+		<td>IP</td>
+		<td>Data/hora</td>
+		<td>URL</td>
+		<td>Metodo</td>
+		<td>Protocolo</td>
+	</thead>
+
+
+<?php foreach ($this->accesses as $access) { ?>
+
+	<tbody>
+		<td><?php echo $access->id;?></td>
+		<td><?php echo $access->ipAddress;?></td>
+		<td><?php echo $access->timestamp;?></td>
+		<td><?php echo $access->pageUrl;?></td>
+		<td><?php echo $access->method;?></td>
+		<td><?php echo $access->protocol;?></td>
+
+		</tbody>
+
+
+
+<?php }
+
+ ?>
+
+
+</table>
+
