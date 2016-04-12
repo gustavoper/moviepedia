@@ -33,11 +33,16 @@
         <controllerFile controllerName="Access">
           <actionMethod actionName="index"/>
         </controllerFile>
+        <controllerFile controllerName="Ssh">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="copy"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="Movie"/>
         <formFile formName="Publisher"/>
         <formFile formName="Genre"/>
+        <formFile formName="Copy"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -50,6 +55,7 @@
           <dbTableFile dbTableName="Publisher"/>
           <dbTableFile dbTableName="Genre"/>
           <dbTableFile dbTableName="Access"/>
+          <dbTableFile dbTableName="Ssh"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
@@ -99,6 +105,12 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Access">
             <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Ssh">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Ssh">
+            <viewScriptFile forActionName="copy"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

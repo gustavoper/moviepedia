@@ -1,0 +1,38 @@
+
+
+<p>
+	<a href="/public/ssh/copy"> Copiar arquivo</a>
+</p>
+<table>
+	<thead>
+		<td>#</td>
+		<td>Host</td>
+		<td>Username</td>
+		<td>Port</td>
+		<td>Origem</td>
+		<td>Destino</td>
+	</thead>
+
+
+
+<?php foreach($this->sshAccess as $access){  ?>
+
+<tbody>
+	<tr>
+	<td><?php echo $access->id;?></td>
+	<td><?php echo $access->host;?></td>
+	<td><?php echo $access->username;?></td>
+	<td><?php echo $access->port;?></td>
+	<td><?php echo $access->origin;?></td>
+		<td><?php echo $access->destination;?></td>
+
+	</tr>
+</tbody>
+
+
+
+<?php
+}?>
+
+
+</table>
