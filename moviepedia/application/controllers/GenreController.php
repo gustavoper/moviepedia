@@ -3,19 +3,22 @@
 class GenreController extends Zend_Controller_Action
 {
 
+
+    protected $genres;
+
     public function init()
     {
         /* Initialize action controller here */
-        $access = new Application_Model_DbTable_Access();
-        $access->addAccess();
 
+        $this->genres = new Application_Model_DbTable_Genre();
+        $access = new Application_Model_Access();
+        $access->save();
     }
 
     public function indexAction()
     {
         // action body
-        $genres = new Application_Model_DbTable_Genre();
-        $this->view->genres = $genres->getGenre();
+        $this->view->genres = $this->genres->getGenre();
     }
 
     public function addAction()
@@ -27,8 +30,7 @@ class GenreController extends Zend_Controller_Action
         $formData = $this->getRequest()->getPost();
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($formData)) {
-                $genres = new Application_Model_DbTable_Genre();
-                $genres->addGenre($formData);
+                $this->genres->addGenre($formData);
                 $this->_helper->redirector('index');
             }
         } else {
@@ -44,9 +46,8 @@ class GenreController extends Zend_Controller_Action
         if ($this->getRequest()->isPost()) {
             $formData = $this->getRequest()->getPost();
             if ($form->isValid($formData)) {
-                $genres = new Application_Model_DbTable_Genre();
                 $id = intval($form->getValue('id'));
-                $genres->editGenre($id,$formData);
+                $this->genres->editGenre($id,$formData);
                 $this->_helper->redirector('index');
             }
             else {
@@ -55,8 +56,7 @@ class GenreController extends Zend_Controller_Action
         } else {
             $id = $this->_getParam('id',0);
             if ($id >0) {
-                $genres = new Application_Model_DbTable_Genre();
-                $form->populate($genres->getGenre($id));
+                $form->populate($this->genres->getGenre($id));
 
             }
         }

@@ -1,5 +1,5 @@
 
-<table>
+<table class="table">
 	<thead>
 		<td>#</td>
 		<td>IP</td>
@@ -10,15 +10,19 @@
 	</thead>
 
 
-<?php foreach ($this->accesses as $access) { ?>
+<?php
+
+foreach ($this->accesses as $access) {
+
+	?>
 
 	<tbody>
-		<td><?php echo $access->id;?></td>
-		<td><?php echo $access->ipAddress;?></td>
-		<td><?php echo $access->timestamp;?></td>
-		<td><?php echo $access->pageUrl;?></td>
-		<td><?php echo $access->method;?></td>
-		<td><?php echo $access->protocol;?></td>
+		<td><?php echo $access['id'];?></td>
+		<td><?php echo $access['ipAddress'];?></td>
+		<td><?php echo $access['timestamp'];?></td>
+		<td><?php echo $access['pageUrl'];?></td>
+		<td><?php echo $access['method'];?></td>
+		<td><?php echo $access['protocol'];?></td>
 
 		</tbody>
 

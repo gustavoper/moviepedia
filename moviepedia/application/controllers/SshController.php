@@ -1,5 +1,17 @@
 <?php
 
+
+/**
+ * Class SshController
+ *
+ * A simple implementation of ssh2 PHP library.
+ *
+ * Next steps:
+ *
+ * 1 - improve connection through public/private keys
+ * 2 - allow user to choose encrypt algorithm
+ * 3 - log all errors / attempts
+ */
 class SshController extends Zend_Controller_Action
 {
 
@@ -18,7 +30,9 @@ class SshController extends Zend_Controller_Action
     public function init()
     {
         /* Initialize action controller here */
-        $this->currentTimestamp = date("Ymdhis"); 
+        $this->currentTimestamp = date("Ymdhis");
+        $access = new Application_Model_Access();
+        $access->save();
 
     }
 

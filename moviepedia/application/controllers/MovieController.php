@@ -3,18 +3,26 @@
 class MovieController extends Zend_Controller_Action
 {
 
+
+    protected $movies;
+
+
     public function init()
     {
         /* Initialize action controller here */
-        $this->registerAccess();
+        $access = new Application_Model_Access();
+        $access->save();
+
+        //nitializing dbtable for furhter use
+        $this->movies = new Application_Model_DbTable_Movie();
+
     }
+
 
     public function indexAction()
     {
         // action body
-
-        $movies = new Application_Model_DbTable_Movie();
-        $this->view->movies = $movies->getMovie();
+        $this->view->movies = $this->movies->getMovie(null,true);
     }
 
     public function addAction()
@@ -26,8 +34,7 @@ class MovieController extends Zend_Controller_Action
         $formData = $this->getRequest()->getPost();
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($formData)) {
-                $movies = new Application_Model_DbTable_Movie();
-                $movies->addMovie($formData);
+                $this->movies->addMovie($formData);
                 $this->_helper->redirector('index');
             }
         } else {
@@ -43,9 +50,8 @@ class MovieController extends Zend_Controller_Action
         if ($this->getRequest()->isPost()) {
             $formData = $this->getRequest()->getPost();
             if ($form->isValid($formData)) {
-                $movies = new Application_Model_DbTable_Movie();
                 $id = intval($form->getValue('id'));
-                $movies->editMovie($id,$formData);
+                $this->movies->editMovie($id,$formData);
                 $this->_helper->redirector('index');
             }
             else {
@@ -54,8 +60,7 @@ class MovieController extends Zend_Controller_Action
         } else {
             $id = $this->_getParam('id',0);
             if ($id >0) {
-                $movies = new Application_Model_DbTable_Movie();
-                $form->populate($movies->getMovie($id));
+                $form->populate($this->movies->getMovie($id));
 
             }
         }
@@ -71,26 +76,19 @@ class MovieController extends Zend_Controller_Action
         if ($this->getRequest()->isPost()) {
             $del = $this->getRequest()->getPost('del');
             if ($del == 'Sim') {
-                $movies = new Application_Model_DbTable_Movie();
                 $id = intval($this->getRequest()->getPost('id'));
-                $movies->deleteMovie($id);
+                $this->movies->deleteMovie($id);
             }
                 $this->_helper->redirector('index');
         } 
         else {
             $id = $this->_getParam('id',0);
             if ($id >0) {
-                $movies = new Application_Model_DbTable_Movie();
-                $this->view->movie = $movies->getMovie($id);
+                $this->view->movie = $this->movies->getMovie($id);
             }
         }
     }
 
-    public function registerAccess() 
-    {
-        $access = new Application_Model_DbTable_Access();
-        $access->addAccess();
-    }
 
 }
 

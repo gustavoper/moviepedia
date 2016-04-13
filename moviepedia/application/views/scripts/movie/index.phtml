@@ -1,20 +1,26 @@
-<table>
+<p><a href="<?php echo $this->url(array('controller'=>'movie','action'=>'add')) ;?>"> Novo Filme</a></p>
+
+<table class="table">
 	<thead>
 		<td>#</td>
 		<td>Nome</td>
 		<td>Data</td>
 		<td>Genero</td>
+		<td>Produtora</td>
 		<td colspan=2>Ações</td>
 	</thead>
 	
-<?php foreach($this->movies as $movie){ ?>
+<?php
+
+foreach($this->movies as $movie){ ?>
 <tbody>
-	<td><?php echo $movie->id; ?></td>
-	<td><?php echo $movie->name; ?></td>
-	<td><?php echo $movie->launchYear; ?></td>
-	<td><?php echo $movie->genreId; ?></td>
-	<td><a href="<?php echo $this->url(array('controller'=>'movie','action'=>'edit','id'=>$movie->id) ) ;?>">Editar</a></td>
-	<td><a href="<?php echo $this->url(array('controller'=>'movie','action'=>'delete','id'=>$movie->id) ) ;?>">Excluir</a></td>
+	<td><?php echo $movie['id']; ?></td>
+	<td><?php echo $movie['name']; ?></td>
+	<td><?php echo $movie['launchYear']; ?></td>
+	<td><?php echo $movie['genreName']; ?></td>
+	<td><?php echo $movie['publisherName']; ?></td>
+	<td><a href="<?php echo $this->url(array('controller'=>'movie','action'=>'edit','id'=>$movie['id']) ) ;?>">Editar</a></td>
+	<td><a href="<?php echo $this->url(array('controller'=>'movie','action'=>'delete','id'=>$movie['id']) ) ;?>">Excluir</a></td>
 </tbody>
 
 <?php 

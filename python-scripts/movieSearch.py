@@ -18,7 +18,7 @@ db = MySQLdb.connect(host=ConfigFileParameters.get("db-config","host"),
 	                     db=ConfigFileParameters.get("db-config","db"))        
 
 cur = db.cursor()
-query = "SELECT mv.id,mv.name,gr.name,pl.name, year(mv.launchYear) FROM movie mv inner join publisher pl on pl.id = mv.id inner join genre gr on gr.id = mv.id"
+query = "SELECT mv.id,mv.name,gr.name,pl.name, year(mv.launchYear) FROM movie mv inner join publisher pl on pl.id = mv.publisherId inner join genre gr on gr.id = mv.genreId"
 cur.execute(query) 
 print "{} | {} | {} | {} | {} ".format("#","Nome","Genero","Produtora","Ano")
 for row in cur.fetchall():

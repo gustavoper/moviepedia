@@ -2,31 +2,54 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <title>MoviePedia - A sua Wikipedia de filmes</title>
-<style>
-    body,table {
-        font-family: Arial;
-        font-size:14px;
-    }
 
-    table {
-    	border:1px solid #000000;
-    	background-color: #eeeeee;
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-    }
-    thead {
-    	background-color: #cccccc;
-
-    }
-
-</style>
 <body>
-<div id="header"><h1>MoviePedia</h1></div>
-<div id="menu"><a href="/public/movie">Filmes</a> | <a href="/public/genre">Generos</a> | <a href="/public/publisher">Produtores</a> | <a href="/public/access">Acesso</a> | <a href="/public/ssh/index">SSH</a>  </div>
-<p>&nbsp;</p>
-<div id="content">
-    <?php echo $this->layout()->content; ?>
+
+
+<a href="https://github.com/gustavoper/moviepedia"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
+
+<div class="page-header">
+    <h1>{MoviePedia}<small> A sua videoteca pessoal!</small></h1>
 </div>
-<div><p>&nbsp;</p></div>
+
+<div class="row">
+
+    <div class="col-sm-12">
+        <ul class="nav nav-pills" role="tablist">
+            <li role="presentation">
+                <a href="<?php echo $this->url(array('controller'=>'movie','action'=>'index')) ;?>">Filmes</a>
+            </li>
+            <li role="presentation">
+                <a href="<?php echo $this->url(array('controller'=>'genre','action'=>'index')) ;?>">Generos</a>
+            </li>
+            <li role="presentation">
+                <a href="<?php echo $this->url(array('controller'=>'publisher','action'=>'index')) ;?>">Produtores</a>
+            </li>
+
+            <li role="presentation">
+                <a href="<?php echo $this->url(array('controller'=>'access','action'=>'index')) ;?>">Acesso</a>
+            </li>
+
+            <li role="presentation">
+                <a href="<?php echo $this->url(array('controller'=>'ssh','action'=>'index')) ;?>">SSH</a>
+            </li>
+        </ul>
+        <hr>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <?php echo $this->layout()->content; ?>
+    </div>
+</div>
+
 <div id="footer">Copyright 2016 - <a href="https://github.com/gustavoper/moviepedia">Fork me on github</a></div>
 </body>
 </html>

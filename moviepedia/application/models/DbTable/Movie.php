@@ -7,13 +7,28 @@ class Application_Model_DbTable_Movie extends Zend_Db_Table_Abstract
 
 
 
-    public function getMovie($id=null)
+    public function getMovie($id=null,$indexQuery=false)
     {
     	$rowParam = null;
+		if ($indexQuery===true) {
+			$query = "SELECT mv.id as id ,
+					  mv.name as 'name',
+					  gr.name as genreName,
+					  pl.name as publisherName,
+					  year(mv.launchYear) as launchYear
+					  FROM movie mv
+					  left join publisher pl on pl.id = mv.publisherId
+					  left join genre gr on gr.id = mv.genreId";
+			$db =  Zend_Db_Table::getDefaultAdapter();
+			return $db->fetchAll($query);
+		}
+
     	if ($id!==null) {
     		$rowParam = 'id = '.$id;
-            return $this->fetchRow($rowParam)->toArray();
-    	}
+			if ($indexQuery===false) {
+				return $this->fetchRow($rowParam)->toArray();
+			}
+		}
         return $this->fetchAll();
     }
 

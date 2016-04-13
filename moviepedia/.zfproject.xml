@@ -57,6 +57,7 @@
           <dbTableFile dbTableName="Access"/>
           <dbTableFile dbTableName="Ssh"/>
         </dbTableDirectory>
+        <modelFile modelName="Access"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <viewsDirectory>

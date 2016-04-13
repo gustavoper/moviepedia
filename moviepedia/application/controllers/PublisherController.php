@@ -3,13 +3,16 @@
 class PublisherController extends Zend_Controller_Action
 {
 
+
+    /**
+     * init action for this controller
+     */
     public function init()
     {
 
         /* Initialize action controller here */
-        $access = new Application_Model_DbTable_Access();
-        $access->addAccess();
-
+        $access = new Application_Model_Access();
+        $access->save();
     }
 
     public function indexAction()
@@ -66,7 +69,7 @@ class PublisherController extends Zend_Controller_Action
 
 
     /**
-    *
+    * delete action
     */
     public function deleteAction()
     {

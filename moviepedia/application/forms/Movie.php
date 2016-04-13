@@ -5,7 +5,6 @@ class Application_Form_Movie extends Zend_Form
 
     public function init()
     {
-
         $this->setName('movie');
         $this->setMethod('post');
 
@@ -21,13 +20,13 @@ class Application_Form_Movie extends Zend_Form
         $name->addValidator('NotEmpty');
 
 
-        $genre = new Zend_Form_Element_Text('genreId');
-        $genre->setLabel("Genero");
-        $genre->setRequired(true);
-        $genre->addFilter('StripTags');
-        $genre->addFilter('StringTrim');
-        $genre->addValidator('NotEmpty');
 
+        $sql = "select id, name from genre ORDER BY name ASC";
+        $db =  Zend_Db_Table::getDefaultAdapter();
+        $genre = new Zend_Form_Element_Select('genreId');
+        $genre->setMultiOptions($db->fetchPairs($sql));
+
+        $genre->setLabel("Genero");
 
 
         $launchYear = new Zend_Form_Element_Select('launchYear');
@@ -47,11 +46,16 @@ class Application_Form_Movie extends Zend_Form
              ->addValidator('NotEmpty');
 
 
-        $publisher = new Zend_Form_Element_Text('publisherId');
+        $sql = "select id, name from publisher ORDER BY name ASC";
+        $db =  Zend_Db_Table::getDefaultAdapter();
+        $publisher = new Zend_Form_Element_Select('publisherId');
+
+
+        $publisher->setMultiOptions($db->fetchPairs($sql));
+
+
         $publisher->setLabel("Produtora")
              ->setRequired(true)
-             ->addFilter('StripTags')
-             ->addFilter('StringTrim')
              ->addValidator('NotEmpty');
 
 
@@ -61,6 +65,8 @@ class Application_Form_Movie extends Zend_Form
         $submit->setLabel('Cadastrar');
 
 
+
+     
 
         $this->addElements(array(
             $id,
