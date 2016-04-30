@@ -35,3 +35,9 @@
   with_items:
     - zend-framework-bin
 
+- name: Remove apache2
+  apt: pkg={{ apache2 }} state=absent
+  sudo: yes
+  with_items:
+     - apache2
+

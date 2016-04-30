@@ -20,11 +20,8 @@ Parte do script foi criado atraves do [phansible](http://phansible.com/). O role
 
 Para rodar a VM, basta iniciar o vagrant (``vagrant up``). A aplicação estará disponivel no ip ``10.11.10.2``. 
 
-O diretorio ``public`` deve contar os arquivos-fonte da aplicação.
+O diretorio ``public`` deve conter os arquivos-fonte da aplicação.
 
+#### Contribua
 
-#### Update
-
-Existem alguns bugs conhecidos. O MongoDB não está registrando as collections e o rewrite do nginx está com problemas.
-
-Mas o log está sendo feito na tabela ``access`` e a aplicação funciona bem no *built-in server*.
+Se quiser contribuir ou usar o projeto em qualquer lugar, fique a vontade =)
